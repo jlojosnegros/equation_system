@@ -15,7 +15,8 @@ include_directories("${CMAKE_CURRENT_SOURCE_DIR}")
 
 #=== Targets ===
 set (EQUATION_SYSTEM_SOURCES
-)
+        ${PROJECT_SOURCE_DIR}/main.cpp
+        )
 
 set (EQUATION_SYSTEM_HEADERS
 
