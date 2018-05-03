@@ -1,0 +1,4 @@
+[submodule "3pp/GUnit"]
+	path = 3pp/GUnit
+	url = https://github.com/cpp-testing/GUnit.git
+	branch = master
