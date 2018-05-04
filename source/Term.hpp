@@ -17,8 +17,10 @@ public:
 
     double getValue(void) const;
     void multiply(double factor);
-    bool hasName(std::string const& name) const;
-    bool hasName(NameSet const& nameSet) const;
+
+    virtual bool hasName(std::string const& name) const;
+
+    virtual bool hasName(NameSet const& nameSet) const;
 
     virtual std::unique_ptr<Term> clon(void) = 0;
     std::string toString(void) const;

@@ -16,11 +16,13 @@ include_directories("${CMAKE_CURRENT_SOURCE_DIR}")
 set (EQUATION_SYSTEM_SOURCES
         ${PROJECT_SOURCE_DIR}/Term.cpp
         ${PROJECT_SOURCE_DIR}/Constant.cpp
+        ${PROJECT_SOURCE_DIR}/Variable.cpp
         )
 
 set (EQUATION_SYSTEM_HEADERS
         ${PROJECT_INCLUDE_DIR}/Term.hpp
         ${PROJECT_INCLUDE_DIR}/Constant.hpp
+        ${PROJECT_INCLUDE_DIR}/Variable.hpp
 )
 
 add_library(equation_system ${EQUATION_SYSTEM_SOURCES} ${EQUATION_SYSTEM_HEADERS})
@@ -50,4 +52,16 @@ set(CONSTANT_TEST_HEADERS
 
 add_executable(Constant_test ${CONSTANT_TEST_SOURCES} ${CONSTANT_TEST_HEADERS})
 target_link_libraries(Constant_test gtest_main equation_system)
-add_dependencies(Term_test equation_system)
+add_dependencies(Constant_test equation_system)
+
+# Variable
+set(VARIABLE_TEST_SOURCES
+        ${PROJECT_TEST_DIR}/Variable_test.cpp
+        )
+
+set(VARIABLE_TEST_HEADERS
+        )
+
+add_executable(Variable_test ${VARIABLE_TEST_SOURCES} ${VARIABLE_TEST_HEADERS})
+target_link_libraries(Variable_test gtest_main equation_system)
+add_dependencies(Variable_test equation_system)
