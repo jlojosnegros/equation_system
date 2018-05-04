@@ -20,3 +20,8 @@ bool Term::hasName(std::string const& name) const
 {
     return false;
 }
+
+bool Term::hasName(Term::NameSet const& nameSet) const
+{
+    return false;
+}

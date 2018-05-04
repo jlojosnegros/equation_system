@@ -25,4 +25,10 @@ GTEST("Term test"){
         EXPECT_FALSE(term.hasName(wrong_name));
     }
 
+    SHOULD("never have a name even if its a set of names")
+    {
+        Term::NameSet nameSet = { "name1", "name2", "name3"};
+        EXPECT_FALSE(term.hasName(nameSet));
+    }
+
 }
