@@ -1,5 +1,7 @@
 #include "Term.hpp"
 
+#include <sstream>
+
 Term::Term(double value)
  : value(value)
 {
@@ -25,3 +27,15 @@ bool Term::hasName(Term::NameSet const& nameSet) const
 {
     return false;
 }
+
+std::string Term::toString(void) const
+{
+    std::stringstream ss;
+
+    ss << "value:" << getValue()
+       << " " << to_string();
+
+    return ss.str();
+}
+
+

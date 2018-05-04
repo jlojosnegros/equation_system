@@ -3,6 +3,9 @@
 
 #include <string>
 #include <set>
+#include <memory>
+
+class TermVisitor;
 
 class Term
 {
@@ -17,9 +20,16 @@ public:
     bool hasName(std::string const& name) const;
     bool hasName(NameSet const& nameSet) const;
 
+    virtual std::unique_ptr<Term> clon(void) = 0;
+    std::string toString(void) const;
+
+    virtual void dispatch(TermVisitor const& termVisitor) = 0;
+
 protected:
 private:
     double value;
+
+    virtual std::string to_string(void) const = 0;
 };
 
 inline bool operator==(const Term& lhs, const Term& rhs)
