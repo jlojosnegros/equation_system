@@ -1,6 +1,8 @@
 #ifndef _EQUATION_SYSTEM_TERM_HPP_
 #define _EQUATION_SYSTEM_TERM_HPP_
 
+#include "NameSet.hpp"
+
 #include <string>
 #include <set>
 #include <memory>
@@ -10,7 +12,6 @@ class TermVisitor;
 class Term
 {
 public:
-    using NameSet = std::set<std::string>;
 
     explicit Term(double value);
     virtual ~Term(void) = default;
@@ -19,7 +20,6 @@ public:
     void multiply(double factor);
 
     virtual bool hasName(std::string const& name) const;
-
     virtual bool hasName(NameSet const& nameSet) const;
 
     virtual std::unique_ptr<Term> clon(void) = 0;

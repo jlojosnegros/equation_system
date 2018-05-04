@@ -19,7 +19,6 @@ public:
     void dispatch(TermVisitor const &termVisitor) override;
 
     bool hasName(std::string const &name) const override;
-
     bool hasName(NameSet const &nameSet) const override;
 
 private:

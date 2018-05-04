@@ -1,6 +1,8 @@
 #include "Variable.hpp"
 #include "Constant.hpp"
 
+#include "NameSet.hpp"
+
 #include <GUnit.h>
 
 #include <iterator>
@@ -22,7 +24,7 @@ GTEST("Variable test")
 
     SHOULD(" have the expected name even in a name set")
     {
-        Term::NameSet nameSet = { "name1", "name2", "name3"};
+        NameSet nameSet = { "name1", "name2", "name3"};
         EXPECT_EQ(std::end(nameSet), nameSet.find(expected_name));
 
         EXPECT_FALSE(variable.hasName(nameSet));

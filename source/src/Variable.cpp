@@ -45,7 +45,7 @@ bool Variable::hasName(std::string const &name) const
     return name == this->name;
 }
 
-bool Variable::hasName(const Term::NameSet &nameSet) const
+bool Variable::hasName(const NameSet &nameSet) const
 {
     return std::end(nameSet) != nameSet.find(name);
 }

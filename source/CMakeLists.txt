@@ -20,6 +20,7 @@ set (EQUATION_SYSTEM_SOURCES
         )
 
 set (EQUATION_SYSTEM_HEADERS
+        ${PROJECT_INCLUDE_DIR}/NameSet.hpp
         ${PROJECT_INCLUDE_DIR}/Term.hpp
         ${PROJECT_INCLUDE_DIR}/Constant.hpp
         ${PROJECT_INCLUDE_DIR}/Variable.hpp
