@@ -9,7 +9,7 @@ public:
     virtual ~Term(void) = default;
 
     double getValue(void) const;
-    void multiply(double value);
+    void multiply(double factor);
 protected:
 private:
     double value;

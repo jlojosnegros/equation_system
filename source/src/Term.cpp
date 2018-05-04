@@ -6,6 +6,12 @@ Term::Term(double value)
 
 }
 
-double Term::getValue(void) const {
+double Term::getValue(void) const
+{
     return value;
+}
+
+void Term::multiply(double factor)
+{
+    value *= factor;
 }
