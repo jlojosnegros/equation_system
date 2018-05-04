@@ -14,27 +14,40 @@ include_directories("${CMAKE_CURRENT_SOURCE_DIR}")
 
 #=== Targets ===
 set (EQUATION_SYSTEM_SOURCES
-        ${PROJECT_SOURCE_DIR}/main.cpp
+        ${PROJECT_SOURCE_DIR}/Term.cpp
+        ${PROJECT_SOURCE_DIR}/Constant.cpp
         )
 
 set (EQUATION_SYSTEM_HEADERS
-
+        ${PROJECT_INCLUDE_DIR}/Term.hpp
+        ${PROJECT_INCLUDE_DIR}/Constant.hpp
 )
 
-add_executable(equation_system ${EQUATION_SYSTEM_SOURCES} ${EQUATION_SYSTEM_HEADERS})
+add_library(equation_system ${EQUATION_SYSTEM_SOURCES} ${EQUATION_SYSTEM_HEADERS})
 
 include_directories("${PROJECT_ROOT_DIR}/3pp/GUnit/include")
 #== Test Targets ==
 # Term
 set(TERM_TEST_SOURCES
         ${PROJECT_TEST_DIR}/Term_test.cpp
-        ${PROJECT_SOURCE_DIR}/Term.cpp
         )
 
 set(TERM_TEST_HEADERS
-        ${PROJECT_INCLUDE_DIR}/Term.hpp
         )
 
 add_executable(Term_test ${TERM_TEST_SOURCES} ${TERM_TEST_HEADERS})
-target_link_libraries(Term_test gtest_main)
-#target_include_directories(Term_test PUBLIC ${PROJECT_SOURCE_DIR}/3pp/GUnit/include)
+target_link_libraries(Term_test gtest_main equation_system)
+add_dependencies(Term_test equation_system)
+
+
+# Constant
+set(CONSTANT_TEST_SOURCES
+        ${PROJECT_TEST_DIR}/Constant_test.cpp
+        )
+
+set(CONSTANT_TEST_HEADERS
+        )
+
+add_executable(Constant_test ${CONSTANT_TEST_SOURCES} ${CONSTANT_TEST_HEADERS})
+target_link_libraries(Constant_test gtest_main equation_system)
+add_dependencies(Term_test equation_system)
