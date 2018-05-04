@@ -17,6 +17,7 @@ set (EQUATION_SYSTEM_SOURCES
         ${PROJECT_SOURCE_DIR}/Term.cpp
         ${PROJECT_SOURCE_DIR}/Constant.cpp
         ${PROJECT_SOURCE_DIR}/Variable.cpp
+        ${PROJECT_SOURCE_DIR}/Expression.cpp
         )
 
 set (EQUATION_SYSTEM_HEADERS
@@ -24,6 +25,7 @@ set (EQUATION_SYSTEM_HEADERS
         ${PROJECT_INCLUDE_DIR}/Term.hpp
         ${PROJECT_INCLUDE_DIR}/Constant.hpp
         ${PROJECT_INCLUDE_DIR}/Variable.hpp
+        ${PROJECT_INCLUDE_DIR}/Expression.hpp
 )
 
 add_library(equation_system ${EQUATION_SYSTEM_SOURCES} ${EQUATION_SYSTEM_HEADERS})
@@ -66,3 +68,15 @@ set(VARIABLE_TEST_HEADERS
 add_executable(Variable_test ${VARIABLE_TEST_SOURCES} ${VARIABLE_TEST_HEADERS})
 target_link_libraries(Variable_test gtest_main equation_system)
 add_dependencies(Variable_test equation_system)
+
+# Expression
+set(EXPRESSION_TEST_SOURCES
+        ${PROJECT_TEST_DIR}/Expression_test.cpp
+        )
+
+set(EXPRESSION_TEST_HEADERS
+        )
+
+add_executable(Expression_test ${EXPRESSION_TEST_SOURCES} ${EXPRESSION_TEST_HEADERS})
+target_link_libraries(Expression_test gtest_main equation_system)
+add_dependencies(Expression_test equation_system)
