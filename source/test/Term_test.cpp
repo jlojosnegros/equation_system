@@ -7,7 +7,7 @@ GTEST("Term test"){
     static constexpr double s_value = 3.1415927;
     Term term (s_value);
 
-    SHOULD("Return the current value")
+    SHOULD("return the current value when asked")
     {
         EXPECT_EQ(s_value, term.getValue()) << "Error: getValue() does not return correct value";
     }
@@ -17,6 +17,12 @@ GTEST("Term test"){
         constexpr double factor = 2.12345;
         term.multiply(factor);
         EXPECT_EQ(s_value*factor, term.getValue());
+    }
+
+    SHOULD("never have a name")
+    {
+        constexpr auto wrong_name = "no_term_name";
+        EXPECT_FALSE(term.hasName(wrong_name));
     }
 
 }

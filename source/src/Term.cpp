@@ -15,3 +15,8 @@ void Term::multiply(double factor)
 {
     value *= factor;
 }
+
+bool Term::hasName(std::string const& name) const
+{
+    return false;
+}
