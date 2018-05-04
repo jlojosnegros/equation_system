@@ -24,12 +24,12 @@ private:
 
 inline bool operator==(const Term& lhs, const Term& rhs)
 { /* do actual comparison */
-    return lhs.value == rhs.value;
+    return lhs.getValue() == rhs.getValue();
 }
 inline bool operator!=(const Term& lhs, const Term& rhs){return !operator==(lhs,rhs);}
 inline bool operator< (const Term& lhs, const Term& rhs)
 { /* do actual comparison */
-    return lhs.value < rhs.value;
+    return lhs.getValue() < rhs.getValue();
 }
 inline bool operator> (const Term& lhs, const Term& rhs){return  operator< (rhs,lhs);}
 inline bool operator<=(const Term& lhs, const Term& rhs){return !operator> (lhs,rhs);}
