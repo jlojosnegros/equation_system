@@ -16,9 +16,23 @@ public:
     void multiply(double factor);
     bool hasName(std::string const& name) const;
     bool hasName(NameSet const& nameSet) const;
+
 protected:
 private:
     double value;
 };
+
+inline bool operator==(const Term& lhs, const Term& rhs)
+{ /* do actual comparison */
+    return lhs.value == rhs.value;
+}
+inline bool operator!=(const Term& lhs, const Term& rhs){return !operator==(lhs,rhs);}
+inline bool operator< (const Term& lhs, const Term& rhs)
+{ /* do actual comparison */
+    return lhs.value < rhs.value;
+}
+inline bool operator> (const Term& lhs, const Term& rhs){return  operator< (rhs,lhs);}
+inline bool operator<=(const Term& lhs, const Term& rhs){return !operator> (lhs,rhs);}
+inline bool operator>=(const Term& lhs, const Term& rhs){return !operator< (lhs,rhs);}
 
 #endif //_EQUATION_SYSTEM_TERM_HPP_
