@@ -23,5 +23,18 @@ set (EQUATION_SYSTEM_HEADERS
 
 add_executable(equation_system ${EQUATION_SYSTEM_SOURCES} ${EQUATION_SYSTEM_HEADERS})
 
+include_directories("${PROJECT_ROOT_DIR}/3pp/GUnit/include")
+#== Test Targets ==
+# Term
+set(TERM_TEST_SOURCES
+        ${PROJECT_TEST_DIR}/Term_test.cpp
+        ${PROJECT_SOURCE_DIR}/Term.cpp
+        )
 
+set(TERM_TEST_HEADERS
+        ${PROJECT_INCLUDE_DIR}/Term.hpp
+        )
 
+add_executable(Term_test ${TERM_TEST_SOURCES} ${TERM_TEST_HEADERS})
+target_link_libraries(Term_test gtest_main)
+#target_include_directories(Term_test PUBLIC ${PROJECT_SOURCE_DIR}/3pp/GUnit/include)
