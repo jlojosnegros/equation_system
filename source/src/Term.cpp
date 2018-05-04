@@ -5,3 +5,7 @@ Term::Term(double value)
 {
 
 }
+
+double Term::getValue(void) const {
+    return value;
+}

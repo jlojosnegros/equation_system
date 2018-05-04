@@ -8,8 +8,8 @@ public:
     explicit Term(double value);
     virtual ~Term(void) = default;
 
-    float getValue(void) const;
-    void multiply(float value);
+    double getValue(void) const;
+    void multiply(double value);
 protected:
 private:
     double value;
