@@ -1,5 +1,7 @@
 #include "Variable.hpp"
 
+#include <iterator>
+
 Variable::Variable(double value, std::string name)
 : Term(value)
 , name(name)
@@ -9,12 +11,12 @@ Variable::Variable(double value, std::string name)
 
 std::string Variable::getName(void) const
 {
-    return std::__cxx11::string();
+    return name;
 }
 
 std::unique_ptr<Term> Variable::clon(void)
 {
-    return nullptr;
+    return std::make_unique<Variable>(getValue(),name);
 }
 
 void Variable::dispatch(TermVisitor const &termVisitor)
@@ -24,22 +26,28 @@ void Variable::dispatch(TermVisitor const &termVisitor)
 
 std::string Variable::to_string(void) const
 {
-    return nullptr;
+    return std::string("type: variable, name: ") + name;
 }
 
 bool Variable::is_equal(Term const &term) const
 {
-    return false;
+    auto var = dynamic_cast<Variable const*>(&term);
+    if (nullptr == var)
+    {
+        return false;
+    }
+
+    return hasName(var->name);
 }
 
 bool Variable::hasName(std::string const &name) const
 {
-    return Term::hasName(name);
+    return name == this->name;
 }
 
 bool Variable::hasName(const Term::NameSet &nameSet) const
 {
-    return Term::hasName(nameSet);
+    return std::end(nameSet) != nameSet.find(name);
 }
 
 

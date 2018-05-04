@@ -31,5 +31,6 @@ private:
     std::string name;
 };
 
+
 #endif //_EQUATION_SYSTEM_VARIABLE_HPP_
 
