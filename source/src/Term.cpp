@@ -38,4 +38,9 @@ std::string Term::toString(void) const
     return ss.str();
 }
 
+bool Term::equal(Term const &term) const
+{
+    return (*this == term) && is_equal(term);
+}
+
 

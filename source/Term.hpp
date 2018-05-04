@@ -24,12 +24,14 @@ public:
     std::string toString(void) const;
 
     virtual void dispatch(TermVisitor const& termVisitor) = 0;
+    bool equal(Term const& term) const;
 
 protected:
 private:
     double value;
 
     virtual std::string to_string(void) const = 0;
+    virtual bool is_equal(Term const& term) const = 0;
 };
 
 inline bool operator==(const Term& lhs, const Term& rhs)
