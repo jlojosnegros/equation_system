@@ -2,6 +2,7 @@
 
 #include "Term.hpp"
 #include "Variable.hpp"
+#include "Constant.hpp"
 #include "NameExpressionAnalyzer.hpp"
 
 #include <numeric>
@@ -58,8 +59,27 @@ void Expression::simplify(std::string name)
 
 void Expression::simplify(void)
 {
-    NameExpressionAnalyzer analyzer(termList);
+    // get all the variable names in the term list.
+    NameExpressionAnalyzer analyzer;
+    for(auto& term : termList)
+    {
+        term->dispatch(analyzer);
+    }
+    auto nameSet = analyzer.getNameSet();
 
+    //get current value of each element without any name ( no name => constant )
+    auto sum = std::accumulate(std::begin(termList), std::end(termList)
+            ,0.0,
+                               [&nameSet](double accumulated, auto& term){
+                                   return accumulated + (!term->hasName(nameSet))?term->getValue():0.0;
+                               });
+
+    // remove all the terms without any name ( no name => constant )
+    termList.erase(std::remove_if(std::begin(termList), std::end(termList),
+                                  [&nameSet](auto& term){return !term->hasName(nameSet);}));
+
+    // insert the new one with the accumulate.
+    termList.push_back(std::make_unique<Constant>(sum));
 }
 
 double Expression::getValue(std::string name) const
@@ -94,7 +114,7 @@ bool Expression::equal(Expression const &expression) const
 
 std::unique_ptr<Expression> Expression::clon(void) const
 {
-    return std::unique_ptr<Expression>();
+    //return std::move(std::make_unique<Expression>(*this));
 }
 
 #include <iostream>

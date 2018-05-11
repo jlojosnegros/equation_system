@@ -36,7 +36,7 @@ GTEST("Expression test")
         EXPECT_EQ(mult_expression, expression);
     }
 
-    SHOULD(" simplify variable in a expression with constnts")
+    SHOULD(" simplify variable in a expression with constants")
     {
         constexpr double x2_value = 3.2;
 
@@ -59,6 +59,42 @@ GTEST("Expression test")
 //        std::cout << expected_expression.toString() << std::endl;
 
         EXPECT_EQ(expected_expression, expression);
+    }
+
+    SHOULD(" simplify constants in expression ")
+    {
+        constexpr double cte2_value = 3.2;
+
+        auto expression = ExpressionBuilder()
+                .term(VariableBuilder().name("x").value(x_value).build())
+                .term(VariableBuilder().name("y").value(y_value).build())
+                .term(Constant(cte_value))
+                .term(Constant(cte2_value))
+                .build();
+
+        const auto expected_expression = ExpressionBuilder()
+                .term(VariableBuilder().name("x").value(x_value).build())
+                .term(VariableBuilder().name("y").value(y_value).build())
+                .term(Constant(cte_value + cte2_value))
+                .build();
+
+        expression.simplify();
+
+//        std::cout << expression.toString() << std::endl;
+//        std::cout << expected_expression.toString() << std::endl;
+
+        EXPECT_EQ(expected_expression, expression);
+    }
+
+    SHOULD(" simplify a non existing variable in expression ")
+    {
+        auto cloned_expression = expression.clon();
+        cloned_expression->simplify("z");
+
+        std::cout << cloned_expression->toString() << std::endl;
+        std::cout << expression.toString() << std::endl;
+
+        EXPECT_EQ(expression, *cloned_expression.get());
     }
 
 }

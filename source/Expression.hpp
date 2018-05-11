@@ -16,8 +16,9 @@ public:
     Expression(void) = default;
     ~Expression() = default;
 
-    Expression(Expression const& rhs) = delete;
-    Expression& operator=(Expression const& rhs) = delete;
+
+    Expression(Expression const& rhs) = default;
+    Expression& operator=(Expression const& rhs) = default;
 
     Expression(Expression&& rhs) = default;
     Expression& operator=(Expression&& rhs) = default;

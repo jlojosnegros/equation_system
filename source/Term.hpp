@@ -29,6 +29,11 @@ public:
     bool equal(Term const& term) const;
 
 protected:
+    Term(Term&& rhs) = default;
+    Term& operator=(Term&& rhs) = default;
+
+    Term(Term const& rhs) = default;
+    Term& operator=(Term const& rhs) = default;
 private:
     double value;
 

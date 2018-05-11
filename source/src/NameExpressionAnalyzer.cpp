@@ -1,11 +1,5 @@
 #include "NameExpressionAnalyzer.hpp"
 
-NameExpressionAnalyzer::NameExpressionAnalyzer(TermList& termList)
-: termList(termList)
-{
-
-}
-
 NameSet NameExpressionAnalyzer::getNameSet(void) const
 {
     return NameSet();

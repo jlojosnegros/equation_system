@@ -10,7 +10,7 @@
 class NameExpressionAnalyzer : public TermVisitor
 {
 public:
-    explicit NameExpressionAnalyzer(TermList& termList);
+    NameExpressionAnalyzer(void) = default;
     void visit(Variable const &variable) override;
     void visit(Constant const &constant) override;
     NameSet getNameSet(void) const;
@@ -18,7 +18,6 @@ public:
     ~NameExpressionAnalyzer() override = default;
 
 private:
-    TermList& termList;
     NameSet nameset;
 };
 
