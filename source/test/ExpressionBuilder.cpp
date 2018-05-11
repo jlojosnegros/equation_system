@@ -14,7 +14,7 @@ ExpressionBuilder& ExpressionBuilder::expression(Expression&& expression)
     return *this;
 }
 
-Expression ExpressionBuilder::build() const
+Expression ExpressionBuilder::build()
 {
     return std::move(m_expresion);
 }

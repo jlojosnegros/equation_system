@@ -16,6 +16,12 @@ public:
     Expression(void) = default;
     ~Expression() = default;
 
+    Expression(Expression const& rhs) = delete;
+    Expression& operator=(Expression const& rhs) = delete;
+
+    Expression(Expression&& rhs) = default;
+    Expression& operator=(Expression&& rhs) = default;
+
     void add(std::unique_ptr<Term> term);
     void add(Term&& term);
     void add(std::unique_ptr<Expression> expression);

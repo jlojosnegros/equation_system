@@ -17,7 +17,7 @@ public:
 
     ExpressionBuilder& term(Term&& term);
     ExpressionBuilder& expression(Expression&& expression);
-    Expression build() const;
+    Expression build();
 protected:
 private:
     Expression m_expresion;
