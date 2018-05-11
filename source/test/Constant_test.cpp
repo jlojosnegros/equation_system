@@ -1,4 +1,5 @@
 #include "Constant.hpp"
+#include "Variable.hpp"
 #include <GUnit.h>
 
 GTEST("Constant test")
@@ -16,6 +17,12 @@ GTEST("Constant test")
     {
         auto cloned = constant.clon();
         EXPECT_TRUE(cloned->equal(constant));
+    }
+
+    SHOULD(" not be equal to any variable")
+    {
+        Variable var(3.13,"var");
+        EXPECT_FALSE(constant.equal(var));
     }
 
 }
