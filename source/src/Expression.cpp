@@ -97,6 +97,7 @@ std::unique_ptr<Expression> Expression::clon(void) const
     return std::unique_ptr<Expression>();
 }
 
+#include <iostream>
 std::string Expression::toString(void) const
 {
     if (termList.empty())
@@ -111,7 +112,11 @@ std::string Expression::toString(void) const
             (*std::begin(termList))->toString(),
             [](std::string accum, auto& term)
             {
-                return accum.append("+").append(term->toString());
+//                std::cout << "ac:" << accum << std::endl;
+//                std::cout << "tm:" << term->toString() << std::endl;
+//                std::cout << "rt:" << accum + "+" + term->toString() << std::endl;
+                return accum + "+" + term->toString();
+                //return accum.append("+").append(term->toString());
             }
     );
 

@@ -12,14 +12,53 @@
 
 GTEST("Expression test")
 {
+    constexpr double x_value = 2;
+    constexpr double y_value = 3;
+    constexpr double cte_value = 5;
+
     auto expression = ExpressionBuilder()
-            .term(VariableBuilder().name("x").value(2).build())
-            .term(VariableBuilder().name("y").value(3).build())
-                    .term(Constant(5))
+            .term(VariableBuilder().name("x").value(x_value).build())
+            .term(VariableBuilder().name("y").value(y_value).build())
+                    .term(Constant(cte_value))
                             .build();
-    SHOULD(" multiply")
+    SHOULD(" multiply all ")
     {
-        std::cout << expression.toString() << std::endl;
+        const double factor = 2.3;
+        const auto mult_expression = ExpressionBuilder()
+                .term(VariableBuilder().name("x").value(factor * x_value).build())
+                .term(VariableBuilder().name("y").value(factor * y_value).build())
+                .term(Constant(factor*cte_value))
+                .build();
+
+        expression.multiply(factor);
+//        std::cout << expression.toString() << std::endl;
+//        std::cout << mult_expression.toString() << std::endl;
+        EXPECT_EQ(mult_expression, expression);
+    }
+
+    SHOULD(" simplify variable in a expression with constnts")
+    {
+        constexpr double x2_value = 3.2;
+
+        auto expression = ExpressionBuilder()
+                .term(VariableBuilder().name("x").value(x_value).build())
+                .term(VariableBuilder().name("y").value(y_value).build())
+                .term(Constant(cte_value))
+                .term(VariableBuilder().name("x").value(x2_value).build())
+                .build();
+
+        const auto expected_expression = ExpressionBuilder()
+                .term(VariableBuilder().name("x").value(x_value+x2_value).build())
+                .term(VariableBuilder().name("y").value(y_value).build())
+                .term(Constant(cte_value))
+                .build();
+
+        expression.simplify("x");
+
+//        std::cout << expression.toString() << std::endl;
+//        std::cout << expected_expression.toString() << std::endl;
+
+        EXPECT_EQ(expected_expression, expression);
     }
 
 }
