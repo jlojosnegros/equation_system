@@ -57,7 +57,7 @@ GTEST("Variable test")
         EXPECT_TRUE(variable.equal(another));
     }
 
-    SHOULD(" be equal to the cloned constant")
+    SHOULD(" be equal to the cloned variable")
     {
         auto cloned = variable.clon();
         EXPECT_TRUE(cloned->equal(variable));
