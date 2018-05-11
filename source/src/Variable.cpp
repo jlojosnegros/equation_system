@@ -26,7 +26,7 @@ void Variable::dispatch(TermVisitor const &termVisitor)
 
 std::string Variable::to_string(void) const
 {
-    return std::string("type: variable, name: ") + name;
+    return name;
 }
 
 bool Variable::is_equal(Term const &term) const

@@ -18,6 +18,9 @@ set (EQUATION_SYSTEM_SOURCES
         ${PROJECT_SOURCE_DIR}/Constant.cpp
         ${PROJECT_SOURCE_DIR}/Variable.cpp
         ${PROJECT_SOURCE_DIR}/Expression.cpp
+        ${PROJECT_SOURCE_DIR}/NameExpressionAnalyzer.cpp
+        ${PROJECT_TEST_DIR}/VariableBuilder.cpp
+        ${PROJECT_TEST_DIR}/ExpressionBuilder.cpp
         )
 
 set (EQUATION_SYSTEM_HEADERS
@@ -26,6 +29,12 @@ set (EQUATION_SYSTEM_HEADERS
         ${PROJECT_INCLUDE_DIR}/Constant.hpp
         ${PROJECT_INCLUDE_DIR}/Variable.hpp
         ${PROJECT_INCLUDE_DIR}/Expression.hpp
+        ${PROJECT_INCLUDE_DIR}/fwdVisitableTerms.hpp
+        ${PROJECT_INCLUDE_DIR}/NameExpressionAnalyzer.hpp
+        ${PROJECT_INCLUDE_DIR}/TermVisitor.hpp
+        ${PROJECT_INCLUDE_DIR}/DataTypes.hpp
+        ${PROJECT_TEST_DIR}/VariableBuilder.hpp
+        ${PROJECT_TEST_DIR}/ExpressionBuilder.hpp
 )
 
 add_library(equation_system ${EQUATION_SYSTEM_SOURCES} ${EQUATION_SYSTEM_HEADERS})

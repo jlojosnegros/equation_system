@@ -12,7 +12,7 @@ void Constant::dispatch(TermVisitor const &termVisitor)
 
 std::string Constant::to_string(void) const
 {
-    return "type: constant";
+    return "cte";
 }
 
 bool Constant::is_equal(Term const& term) const

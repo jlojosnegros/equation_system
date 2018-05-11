@@ -31,10 +31,7 @@ bool Term::hasName(NameSet const& nameSet) const
 std::string Term::toString(void) const
 {
     std::stringstream ss;
-
-    ss << "value:" << getValue()
-       << " " << to_string();
-
+    ss << getValue()<< to_string();
     return ss.str();
 }
 

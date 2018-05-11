@@ -1,6 +1,7 @@
 #ifndef _EQUATION_SYSTEM_EXPRESSION_HPP_
 #define _EQUATION_SYSTEM_EXPRESSION_HPP_
 
+#include "DataTypes.hpp"
 #include "NameSet.hpp"
 
 #include <string>
@@ -29,11 +30,8 @@ public:
     double getValue(void) const;
 
     NameSet getNameSet(void) const;
-
     bool hasName(std::string name) const;
-
     void apply(std::string name, double value);
-
     bool equal(Expression const& expression) const;
 
     std::unique_ptr<Expression> clon(void) const;
@@ -42,8 +40,6 @@ public:
 protected:
 private:
     bool empty(void) const;
-
-    using TermList = std::list<std::unique_ptr<Term>>;
     TermList termList;
 };
 
